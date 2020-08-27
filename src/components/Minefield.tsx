@@ -20,15 +20,17 @@ const Minefield = () => {
   return (
     <div className={classes.minefield}>
       <table>
-        {minefield.map((row) => (
-          <tr>
-            {row.map((cell) => (
-              <td>
-                <UnopenedCell></UnopenedCell>
-              </td>
-            ))}
-          </tr>
-        ))}
+        <tbody>
+          {minefield.map((row, i) => (
+            <tr key={i}>
+              {row.map((cell, j) => (
+                <td key={j}>
+                  <UnopenedCell></UnopenedCell>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
