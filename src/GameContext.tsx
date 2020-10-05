@@ -16,9 +16,9 @@ export type Minefield = Cell[][];
 
 export type GameContextType = {
   minefield?: Minefield;
-  setMinefield?: React.Dispatch<any>;
+  setMinefield: React.Dispatch<any>;
   gameStarted?: Boolean;
-  setGameStarted?: React.Dispatch<any>;
+  setGameStarted: React.Dispatch<any>;
   config?: {
     columns: number;
     rows: number;
@@ -26,6 +26,9 @@ export type GameContextType = {
   };
 };
 
-const GameContext = React.createContext<GameContextType>({});
+const GameContext = React.createContext<GameContextType>({
+  setMinefield: () => {},
+  setGameStarted: () => {},
+});
 
 export default GameContext;

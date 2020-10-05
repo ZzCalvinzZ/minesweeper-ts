@@ -144,8 +144,8 @@ describe("mines.ts", () => {
 
     */
 
-    revealCell(0, 3, minefield);
-    expect(stringUpMinefield(minefield)).toEqual(
+    const newMinefield = revealCell(0, 3, minefield);
+    expect(stringUpMinefield(newMinefield)).toEqual(
       `U,U,x,2,x,U,U,U,U
 U,U,U,U,U,U,U,U,U
 U,U,U,x,U,U,U,U,U
@@ -157,8 +157,8 @@ U,U,U,U,U,U,U,U,U
 U,x,U,U,U,U,U,x,U`
     );
 
-    revealCell(0, 0, minefield);
-    expect(stringUpMinefield(minefield)).toEqual(
+    const evenNewerMinefield = revealCell(0, 0, newMinefield);
+    expect(stringUpMinefield(evenNewerMinefield)).toEqual(
       `0,1,x,2,x,U,U,U,U
 0,1,2,U,U,U,U,U,U
 0,0,1,x,U,U,U,U,U

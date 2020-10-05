@@ -13,11 +13,16 @@ const useStyles = createUseStyles({
 type CellProps = {
   className: string;
   children?: ReactNode;
+  onClick?: () => void;
 };
 
-const Cell = ({ className, children }: CellProps) => {
+const Cell: React.FC<CellProps> = ({ className, children, onClick }) => {
   const classes = useStyles();
-  return <div className={`${classes.cell} ${className}`}>{children}</div>;
+  return (
+    <div onClick={onClick} className={`${classes.cell} ${className}`}>
+      {children}
+    </div>
+  );
 };
 
 export default Cell;

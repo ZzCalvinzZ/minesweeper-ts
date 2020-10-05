@@ -11,9 +11,13 @@ const useStyles = createUseStyles({
   },
 });
 
-const UnopenedCell = () => {
+type UnopenedCellProps = {
+  onClick?: () => void;
+};
+
+const UnopenedCell: React.FC<UnopenedCellProps> = ({onClick}) => {
   const classes = useStyles();
-  return <Cell className={classes.unopenedCell}></Cell>;
+  return <Cell className={classes.unopenedCell} onClick={onClick}></Cell>;
 };
 
 export default UnopenedCell;
