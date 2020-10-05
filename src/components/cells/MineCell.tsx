@@ -14,7 +14,6 @@ const useStyles = createUseStyles({
   mine: {
     width: "70%",
     height: "70%",
-
   },
 });
 

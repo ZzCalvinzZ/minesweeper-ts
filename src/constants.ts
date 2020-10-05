@@ -10,4 +10,5 @@ export const MINES = 10;
 export const DEFAULT_CELL: Cell = {
   state: CellState.Unopened,
   hasMine: false,
+  flagged: false,
 };

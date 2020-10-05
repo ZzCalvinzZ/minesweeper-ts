@@ -14,12 +14,22 @@ type CellProps = {
   className: string;
   children?: ReactNode;
   onClick?: () => void;
+  onContextMenu?: () => void;
 };
 
-const Cell: React.FC<CellProps> = ({ className, children, onClick }) => {
+const Cell: React.FC<CellProps> = ({
+  className,
+  children,
+  onClick,
+  onContextMenu,
+}) => {
   const classes = useStyles();
   return (
-    <div onClick={onClick} className={`${classes.cell} ${className}`}>
+    <div
+      onClick={onClick}
+      onContextMenu={onContextMenu}
+      className={`${classes.cell} ${className}`}
+    >
       {children}
     </div>
   );

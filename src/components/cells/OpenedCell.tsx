@@ -9,6 +9,26 @@ const useStyles = createUseStyles({
     "&:hover": {
       backgroundColor: "#d3d7cf",
     },
+    display: "flex",
+    "justify-content": "center",
+    "align-items": "center",
+    "font-size": "24px",
+    "font-weight": "bold",
+    cursor: "default",
+    color: (props) => {
+      switch (props.cell.surroundingMines) {
+        case 1:
+          return "blue";
+        case 2:
+          return "green";
+        case 3:
+          return "red";
+        case 4:
+          return "purple";
+        case 5:
+          return "maroon";
+      }
+    },
   },
 });
 
@@ -16,8 +36,9 @@ type OpenedCellProps = {
   cell: CellType;
 };
 
-const OpenedCell: React.FC<OpenedCellProps> = ({ cell }) => {
-  const classes = useStyles();
+const OpenedCell: React.FC<OpenedCellProps> = (props) => {
+  const classes = useStyles(props);
+  const { cell } = props;
   return (
     <Cell className={classes.openedCell}>{cell.surroundingMines || ""}</Cell>
   );

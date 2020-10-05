@@ -59,6 +59,7 @@ export const revealCell = (
   // if cell is out of bounds or opened already
   if (!mainCell) return newMinefield;
   if (mainCell.state === CellState.Opened) return newMinefield;
+  if (mainCell.state === CellState.Flagged) return newMinefield;
 
   // set the cell as opened
   mainCell.state = CellState.Opened;
@@ -87,6 +88,13 @@ export const revealCell = (
       });
     });
   }
+
+  return newMinefield;
+};
+
+export const setFlag = (column: number, row: number, minefield: Minefield) => {
+  const newMinefield = cloneDeep(minefield);
+  newMinefield[column][row].state = CellState.Flagged;
 
   return newMinefield;
 };

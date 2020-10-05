@@ -10,6 +10,7 @@ export enum CellState {
 export type Cell = {
   state: CellState;
   hasMine: Boolean;
+  flagged: Boolean;
   surroundingMines?: number;
 };
 export type Minefield = Cell[][];
