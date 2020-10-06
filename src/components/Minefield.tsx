@@ -9,12 +9,15 @@ import GameContext, {
 } from "../GameContext";
 import {
   revealCell as revealCellUtil,
-  setFlag as setFlagUtil,
+  toggleFlag as toggleFlagUtil,
   revealSurrounding as revealSurroundingUtil,
 } from "../utils/mines";
 
 const useStyles = createUseStyles({
-  minefield: {},
+  minefield: {
+    display: "flex",
+    "justify-content": "center",
+  },
 });
 
 type CellProps = {
@@ -34,7 +37,7 @@ const Minefield: React.FC = () => {
   };
 
   const setFlag = (column: number, row: number) => {
-    const newMinefield = setFlagUtil(column, row, minefield);
+    const newMinefield = toggleFlagUtil(column, row, minefield);
     setMinefield(newMinefield);
   };
 

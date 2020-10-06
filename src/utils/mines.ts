@@ -92,9 +92,17 @@ export const revealCell = (
   return newMinefield;
 };
 
-export const setFlag = (column: number, row: number, minefield: Minefield) => {
+export const toggleFlag = (
+  column: number,
+  row: number,
+  minefield: Minefield
+) => {
   const newMinefield = cloneDeep(minefield);
-  newMinefield[column][row].state = CellState.Flagged;
+  const isFlagged = newMinefield[column][row].state === CellState.Flagged;
+
+  newMinefield[column][row].state = isFlagged
+    ? CellState.Unopened
+    : CellState.Flagged;
 
   return newMinefield;
 };
@@ -114,5 +122,5 @@ export const revealSurrounding = (
     });
   });
 
-  return newMinefield
+  return newMinefield;
 };
