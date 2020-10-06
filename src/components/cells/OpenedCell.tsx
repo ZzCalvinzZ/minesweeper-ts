@@ -34,13 +34,16 @@ const useStyles = createUseStyles({
 
 type OpenedCellProps = {
   cell: CellType;
+  onContextMenu?: () => void;
 };
 
 const OpenedCell: React.FC<OpenedCellProps> = (props) => {
   const classes = useStyles(props);
-  const { cell } = props;
+  const { cell, onContextMenu } = props;
   return (
-    <Cell className={classes.openedCell}>{cell.surroundingMines || ""}</Cell>
+    <Cell onContextMenu={onContextMenu} className={classes.openedCell}>
+      {cell.surroundingMines || ""}
+    </Cell>
   );
 };
 

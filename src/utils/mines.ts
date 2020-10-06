@@ -98,3 +98,21 @@ export const setFlag = (column: number, row: number, minefield: Minefield) => {
 
   return newMinefield;
 };
+
+export const revealSurrounding = (
+  column: number,
+  row: number,
+  minefield: Minefield
+) => {
+  let newMinefield = cloneDeep(minefield);
+  const columns = [column - 1, column, column + 1];
+  const rows = [row - 1, row, row + 1];
+
+  columns.forEach((c) => {
+    rows.forEach((r) => {
+      newMinefield = revealCell(c, r, newMinefield);
+    });
+  });
+
+  return newMinefield
+};

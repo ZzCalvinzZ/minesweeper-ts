@@ -7,7 +7,11 @@ import GameContext, {
   Minefield as MinefieldType,
   CellState,
 } from "../GameContext";
-import { revealCell, setFlag } from "../utils/mines";
+import {
+  revealCell as revealCellUtil,
+  setFlag as setFlagUtil,
+  revealSurrounding as revealSurroundingUtil,
+} from "../utils/mines";
 
 const useStyles = createUseStyles({
   minefield: {},
@@ -23,14 +27,19 @@ const Minefield: React.FC = () => {
   const { minefield, setMinefield } = useContext(GameContext);
   if (!minefield) throw Error("There must be a minefield duh");
 
-  const onClick = (column: number, row: number) => {
+  const revealCell = (column: number, row: number) => {
     setMinefield((existingMinefield: MinefieldType) =>
-      revealCell(column, row, existingMinefield)
+      revealCellUtil(column, row, existingMinefield)
     );
   };
 
-  const onContextMenu = (column: number, row: number) => {
-    const newMinefield = setFlag(column, row, minefield);
+  const setFlag = (column: number, row: number) => {
+    const newMinefield = setFlagUtil(column, row, minefield);
+    setMinefield(newMinefield);
+  };
+
+  const revealSurrounding = (column: number, row: number) => {
+    const newMinefield = revealSurroundingUtil(column, row, minefield);
     setMinefield(newMinefield);
   };
 
@@ -51,14 +60,19 @@ const Minefield: React.FC = () => {
                     cell.state === CellState.Flagged) && (
                     <UnopenedCell
                       cell={cell}
-                      onClick={() => onClick(i, j)}
+                      onClick={() => revealCell(i, j)}
                       onContextMenu={() => {
-                        onContextMenu(i, j);
+                        setFlag(i, j);
                       }}
                     ></UnopenedCell>
                   )}
                   {cell.state === CellState.Opened && !cell.hasMine && (
-                    <OpenedCell cell={cell}></OpenedCell>
+                    <OpenedCell
+                      onContextMenu={() => {
+                        revealSurrounding(i, j);
+                      }}
+                      cell={cell}
+                    ></OpenedCell>
                   )}
                   {cell.state === CellState.Opened && cell.hasMine && (
                     <MineCell cell={cell}></MineCell>
