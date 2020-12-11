@@ -7,6 +7,18 @@ export enum CellState {
   Flagged,
 }
 
+export enum GameStatus {
+  Select,
+  Started,
+  Finished,
+}
+
+export type GameConfig = {
+  columns: number;
+  rows: number;
+  mines: number;
+};
+
 export type Cell = {
   state: CellState;
   hasMine: Boolean;
@@ -18,18 +30,14 @@ export type Minefield = Cell[][];
 export type GameContextType = {
   minefield?: Minefield;
   setMinefield: React.Dispatch<any>;
-  gameStarted?: Boolean;
-  setGameStarted: React.Dispatch<any>;
-  config?: {
-    columns: number;
-    rows: number;
-    mines: number;
-  };
+  gameStatus?: GameStatus;
+  setGameStatus: React.Dispatch<any>;
+  config?: GameConfig;
 };
 
 const GameContext = React.createContext<GameContextType>({
   setMinefield: () => {},
-  setGameStarted: () => {},
+  setGameStatus: () => {},
 });
 
 export default GameContext;

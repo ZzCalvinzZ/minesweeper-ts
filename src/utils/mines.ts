@@ -1,13 +1,11 @@
 import { DEFAULT_CELL } from "../constants";
 import { getRandomInt } from "./random";
-import { Minefield, CellState } from "../GameContext";
+import { Minefield, CellState, GameConfig } from "../GameContext";
 import cloneDeep from "lodash.clonedeep";
 
-export const generateMinefield = (
-  columns: number,
-  rows: number,
-  mines: number
-) => {
+export const generateMinefield = (config: GameConfig) => {
+  const { columns, rows, mines } = config;
+
   // create empty field
   const minefield: Minefield = Array(rows)
     .fill(null)
