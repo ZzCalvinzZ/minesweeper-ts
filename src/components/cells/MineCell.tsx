@@ -5,12 +5,12 @@ import { Cell as CellType } from "../../GameContext";
 import MineImg from "./mine.png";
 
 const useStyles = createUseStyles({
-  mineCell: {
-    backgroundColor: "red",
+  mineCell: (won) => ({
+    backgroundColor: won ? "green" : "red",
     display: "flex",
     "justify-content": "center",
     "align-items": "center",
-  },
+  }),
   mine: {
     width: "70%",
     height: "70%",
@@ -19,10 +19,11 @@ const useStyles = createUseStyles({
 
 type MineCellProps = {
   cell: CellType;
+  won?: boolean;
 };
 
-const MineCell: React.FC<MineCellProps> = ({ cell }) => {
-  const classes = useStyles();
+const MineCell: React.FC<MineCellProps> = ({ cell, won = false }) => {
+  const classes = useStyles(won);
   return (
     <Cell className={classes.mineCell}>
       <img className={classes.mine} src={MineImg} alt="Mine" />

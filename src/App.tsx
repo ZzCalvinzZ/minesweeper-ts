@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 import Game from "./Game";
-import GameContext, { GameConfig, GameStatus } from "./GameContext";
+import GameContext, { GameStatus } from "./GameContext";
 import { generateMinefield } from "./utils/mines";
 import { GameTypes, GAME_TYPES } from "./constants";
 
@@ -54,7 +54,27 @@ function App() {
           </>
         )}
         {gameStatus === GameStatus.Started && <h2>{gameType}</h2>}
-        {gameStatus === GameStatus.Started && <Game />}
+        {[GameStatus.Started, GameStatus.Won, GameStatus.Lost].includes(
+          gameStatus
+        ) && <Game />}
+
+        {gameStatus === GameStatus.Won && (
+          <div>
+            <h2>Congratulations, you won! :)</h2>
+            <button onClick={() => setGameStatus(GameStatus.Select)}>
+              New Game!
+            </button>
+          </div>
+        )}
+
+        {gameStatus === GameStatus.Lost && (
+          <div>
+            <h2>Oh No, you got blowed up :(</h2>
+            <button onClick={() => setGameStatus(GameStatus.Select)}>
+              New Game!
+            </button>
+          </div>
+        )}
       </GameContext.Provider>
     </div>
   );

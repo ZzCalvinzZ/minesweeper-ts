@@ -10,7 +10,8 @@ export enum CellState {
 export enum GameStatus {
   Select,
   Started,
-  Finished,
+  Won,
+  Lost,
 }
 
 export type GameConfig = {

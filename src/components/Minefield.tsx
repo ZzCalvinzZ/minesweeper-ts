@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import UnopenedCell from "./cells/UnopenedCell";
 import OpenedCell from "./cells/OpenedCell";
@@ -6,6 +6,8 @@ import MineCell from "./cells/MineCell";
 import GameContext, {
   Minefield as MinefieldType,
   CellState,
+  GameStatus,
+  Cell,
 } from "../GameContext";
 import {
   revealCell as revealCellUtil,
@@ -20,14 +22,42 @@ const useStyles = createUseStyles({
   },
 });
 
-type CellProps = {
-  className: string;
-  children?: ReactNode;
-};
-
 const Minefield: React.FC = () => {
   const classes = useStyles();
-  const { minefield, setMinefield } = useContext(GameContext);
+  const {
+    minefield,
+    setMinefield,
+    gameStatus,
+    setGameStatus,
+    config,
+  } = useContext(GameContext);
+
+  useEffect(() => {
+    if (!minefield || !config) return;
+    const totalSpaces = config.columns * config.rows - config.mines;
+    let spacesRevealed = 0;
+    let lost = false;
+
+    minefield.forEach((column) => {
+      column.forEach((cell) => {
+        if (cell.state === CellState.Opened && !cell.hasMine) {
+          spacesRevealed += 1;
+        }
+        if (cell.state === CellState.Opened && cell.hasMine) {
+          lost = true;
+        }
+      });
+    });
+
+    if (lost) {
+      setGameStatus(GameStatus.Lost);
+    }
+
+    if (spacesRevealed === totalSpaces) {
+      setGameStatus(GameStatus.Won);
+    }
+  }, [config, minefield, setGameStatus]);
+
   if (!minefield) throw Error("There must be a minefield duh");
 
   const revealCell = (column: number, row: number) => {
@@ -46,6 +76,38 @@ const Minefield: React.FC = () => {
     setMinefield(newMinefield);
   };
 
+  const renderCell = (cell: Cell, i: number, j: number) => {
+    if (gameStatus === GameStatus.Lost && cell.hasMine) {
+      return <MineCell cell={cell}></MineCell>;
+    } else if (gameStatus === GameStatus.Won && cell.hasMine) {
+      return <MineCell won cell={cell}></MineCell>;
+    } else if (
+      cell.state === CellState.Unopened ||
+      cell.state === CellState.Flagged
+    ) {
+      return (
+        <UnopenedCell
+          cell={cell}
+          onClick={() => revealCell(i, j)}
+          onContextMenu={() => {
+            setFlag(i, j);
+          }}
+        ></UnopenedCell>
+      );
+    } else if (cell.state === CellState.Opened && !cell.hasMine) {
+      return (
+        <OpenedCell
+          onContextMenu={() => {
+            revealSurrounding(i, j);
+          }}
+          cell={cell}
+        ></OpenedCell>
+      );
+    } else if (cell.state === CellState.Opened && cell.hasMine) {
+      return <MineCell cell={cell}></MineCell>;
+    }
+  };
+
   return (
     <div
       onContextMenu={(e) => {
@@ -58,29 +120,7 @@ const Minefield: React.FC = () => {
           {minefield.map((row, i) => (
             <tr key={i}>
               {row.map((cell, j) => (
-                <td key={j}>
-                  {(cell.state === CellState.Unopened ||
-                    cell.state === CellState.Flagged) && (
-                    <UnopenedCell
-                      cell={cell}
-                      onClick={() => revealCell(i, j)}
-                      onContextMenu={() => {
-                        setFlag(i, j);
-                      }}
-                    ></UnopenedCell>
-                  )}
-                  {cell.state === CellState.Opened && !cell.hasMine && (
-                    <OpenedCell
-                      onContextMenu={() => {
-                        revealSurrounding(i, j);
-                      }}
-                      cell={cell}
-                    ></OpenedCell>
-                  )}
-                  {cell.state === CellState.Opened && cell.hasMine && (
-                    <MineCell cell={cell}></MineCell>
-                  )}
-                </td>
+                <td key={j}>{renderCell(cell, i, j)}</td>
               ))}
             </tr>
           ))}
