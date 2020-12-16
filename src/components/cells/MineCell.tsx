@@ -6,7 +6,7 @@ import MineImg from "./mine.png";
 
 const useStyles = createUseStyles({
   mineCell: (won) => ({
-    backgroundColor: won ? "green" : "red",
+    backgroundColor: won ? "lime" : "red",
     display: "flex",
     "justify-content": "center",
     "align-items": "center",
