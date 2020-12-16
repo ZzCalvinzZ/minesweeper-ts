@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/minesweeper/static/js/main.fec2d3f1.chunk.js",
-    "main.js.map": "/minesweeper/static/js/main.fec2d3f1.chunk.js.map",
-    "runtime-main.js": "/minesweeper/static/js/runtime-main.aad984f9.js",
-    "runtime-main.js.map": "/minesweeper/static/js/runtime-main.aad984f9.js.map",
-    "static/js/2.3a344d66.chunk.js": "/minesweeper/static/js/2.3a344d66.chunk.js",
-    "static/js/2.3a344d66.chunk.js.map": "/minesweeper/static/js/2.3a344d66.chunk.js.map",
-    "index.html": "/minesweeper/index.html",
-    "precache-manifest.fa40e7bced4284b922ae1725ff6f60ff.js": "/minesweeper/precache-manifest.fa40e7bced4284b922ae1725ff6f60ff.js",
-    "service-worker.js": "/minesweeper/service-worker.js",
-    "static/js/2.3a344d66.chunk.js.LICENSE.txt": "/minesweeper/static/js/2.3a344d66.chunk.js.LICENSE.txt",
-    "static/media/flag.png": "/minesweeper/static/media/flag.bff5c9fc.png"
+    "main.js": "/minesweeper-ts/static/js/main.75049487.chunk.js",
+    "main.js.map": "/minesweeper-ts/static/js/main.75049487.chunk.js.map",
+    "runtime-main.js": "/minesweeper-ts/static/js/runtime-main.702ba446.js",
+    "runtime-main.js.map": "/minesweeper-ts/static/js/runtime-main.702ba446.js.map",
+    "static/js/2.3a344d66.chunk.js": "/minesweeper-ts/static/js/2.3a344d66.chunk.js",
+    "static/js/2.3a344d66.chunk.js.map": "/minesweeper-ts/static/js/2.3a344d66.chunk.js.map",
+    "index.html": "/minesweeper-ts/index.html",
+    "precache-manifest.8bd8a97ac5eb5e0b99a9c25c0a242b99.js": "/minesweeper-ts/precache-manifest.8bd8a97ac5eb5e0b99a9c25c0a242b99.js",
+    "service-worker.js": "/minesweeper-ts/service-worker.js",
+    "static/js/2.3a344d66.chunk.js.LICENSE.txt": "/minesweeper-ts/static/js/2.3a344d66.chunk.js.LICENSE.txt",
+    "static/media/flag.png": "/minesweeper-ts/static/media/flag.bff5c9fc.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.aad984f9.js",
+    "static/js/runtime-main.702ba446.js",
     "static/js/2.3a344d66.chunk.js",
-    "static/js/main.fec2d3f1.chunk.js"
+    "static/js/main.75049487.chunk.js"
   ]
 }
