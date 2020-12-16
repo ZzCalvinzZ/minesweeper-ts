@@ -21,7 +21,6 @@ function App() {
 
   const startGame = (gameType: GameTypes) => {
     const config = GAME_TYPES[gameType];
-    console.log(gameType);
 
     setConfig(config);
     setGameType(gameType);
