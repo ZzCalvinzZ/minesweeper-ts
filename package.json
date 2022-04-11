@@ -2,7 +2,6 @@
   "name": "minesweeper-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "minesweeper.calvinkcollins.com",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.0",
