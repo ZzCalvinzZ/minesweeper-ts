@@ -5,7 +5,7 @@ import { Cell as CellType } from "../../GameContext";
 import MineImg from "./mine.png";
 
 const useStyles = createUseStyles({
-  mineCell: (won) => ({
+  mineCell: (won: boolean) => ({
     backgroundColor: won ? "lime" : "red",
     display: "flex",
     "justify-content": "center",

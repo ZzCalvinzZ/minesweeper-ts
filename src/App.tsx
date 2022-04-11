@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 import Game from "./Game";
-import GameContext, { GameStatus } from "./GameContext";
+import GameContext, { GameStatus, GameConfig, Minefield } from "./GameContext";
 import { generateMinefield } from "./utils/mines";
 import { GameTypes, GAME_TYPES } from "./constants";
 
@@ -14,10 +14,10 @@ const useStyles = createUseStyles({
 function App() {
   const classes = useStyles();
 
-  const [config, setConfig] = useState();
-  const [gameType, setGameType] = useState();
+  const [config, setConfig] = useState<GameConfig | undefined>();
+  const [gameType, setGameType] = useState<GameTypes | undefined>();
   const [gameStatus, setGameStatus] = useState(GameStatus.Select);
-  const [minefield, setMinefield] = useState();
+  const [minefield, setMinefield] = useState<Minefield | undefined>();
 
   const startGame = (gameType: GameTypes) => {
     const config = GAME_TYPES[gameType];

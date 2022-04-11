@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
     "font-size": "24px",
     "font-weight": "bold",
     cursor: "default",
-    color: (props) => {
+    color: (props: OpenedCellProps) => {
       switch (props.cell.surroundingMines) {
         case 1:
           return "blue";
