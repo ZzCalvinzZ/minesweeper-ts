@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/minesweeper.calvinkcollins.com/static/js/main.f7693eba.js",
-    "static/media/flag.png": "/minesweeper.calvinkcollins.com/static/media/flag.ed7b001904baafe59035.png",
-    "index.html": "/minesweeper.calvinkcollins.com/index.html",
-    "main.f7693eba.js.map": "/minesweeper.calvinkcollins.com/static/js/main.f7693eba.js.map"
+    "main.js": "/static/js/main.d24aae8a.js",
+    "static/media/flag.png": "/static/media/flag.ed7b001904baafe59035.png",
+    "index.html": "/index.html",
+    "main.d24aae8a.js.map": "/static/js/main.d24aae8a.js.map"
   },
   "entrypoints": [
-    "static/js/main.f7693eba.js"
+    "static/js/main.d24aae8a.js"
   ]
 }
